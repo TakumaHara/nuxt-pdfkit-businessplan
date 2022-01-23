@@ -1,12 +1,5 @@
 [
   {
-    "name": "inspire",
-    "path": "/inspire",
-    "component": "/Users/takuma/nuxt-pdfkit-businessplan/pages/inspire.vue",
-    "chunkName": "pages/inspire",
-    "_name": "_72eac6b8"
-  },
-  {
     "name": "index",
     "path": "/",
     "component": "/Users/takuma/nuxt-pdfkit-businessplan/pages/index.vue",

@@ -1,77 +1,139 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <div class="container">
+    <h1 class="title">
+      Nuxt.js + pdfkitでフォームの内容をPDF出力
+    </h1>
+    <form
+      class="st-form"
+      action="/api/pdf"
+      method="POST"
+    >
+      <input
+        :value="$store.state.csrfToken"
+        type="hidden"
+        name="_csrf"
+      >
+      <div class="st-datefield">
+        <label for="issue">発行日</label>
+        <input
+          id="issue"
+          type="date"
+          name="issue"
+          required
+          aria-required="true"
+        >
+      </div>
+      <div class="st-textfield">
+        <label for="client_name">会社名</label>
+        <input
+          id="client_name"
+          type="text"
+          name="client_name"
+        >
+      </div>
+      <div class="st-textfield">
+        <label for="charge">担当者名</label>
+        <input
+          id="charge"
+          type="text"
+          name="charge"
+        >
+      </div>
+      <div class="st-textfield">
+        <label for="content">但し書き</label>
+        <input
+          id="content"
+          type="text"
+          name="content"
+        >
+      </div>
+      <div class="st-textfield">
+        <label for="price">金額</label>
+        <input
+          id="price"
+          type="number"
+          name="price"
+        >
+      </div>
+      <div class="st-textfield">
+        <label for="bikou">備考</label>
+        <textarea
+          id="bikou"
+          name="bikou"
+          cols="30"
+          rows="10"
+        />
+      </div>
+      <button type="submit">
+        発行
+      </button>
+    </form>
+  </div>
 </template>
+
+<style>
+.container {
+  width: 80%;
+  margin: 60px auto;
+}
+
+.title {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  display: block;
+  font-weight: 300;
+  font-size: 24px;
+  color: #35495e;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  width: 480px;
+  padding: 20px;
+  border: 1px solid #35495e;
+  margin: 0 auto;
+}
+.st-textfield {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+input,
+textarea {
+  border: 1px solid #35495e;
+}
+.st-textfield input {
+  height: 36px;
+  padding: 0 4px;
+}
+button {
+  cursor: pointer;
+  background-color: #35495e;
+  color: #fff;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.16);
+  display: block;
+  margin: 0 auto;
+}
+button:hover,
+button:focus {
+  background-color: #43607c;
+}
+button:active {
+  box-shadow: none;
+}
+.st-datefield {
+  border-bottom: 1px solid #43607c;
+  margin-bottom: 10px;
+}
+.st-datefield input {
+  border: none;
+  height: 36px;
+
+}
+</style>
